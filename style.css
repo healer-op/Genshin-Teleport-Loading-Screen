@@ -1,0 +1,92 @@
+/* _____         _         
+  |  |  |___ ___| |___ ___ 
+  |     | -_| .'| | -_|  _|
+  |__|__|___|__,|_|___|_|  
+         github.com/healer-op 
+*/
+:root {
+  --loadingbar-background-color: #f5f5f5;
+  --loadingbar-prospect-color: #666666;
+}
+html {
+  cursor: url(Images/cursor.png), url(Images/cursor.png), auto;
+}
+
+html.dark {
+  --loadingbar-background-color: #2c2b30;
+  --loadingbar-prospect-color: #ece5d8;
+}
+
+html.dark body {
+  background-color: #161d22;
+}
+
+.loading-bar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 62.5px;
+  transform: translate(-50%, -50%) scale(0.8);
+  transition: all 0.5s;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  overflow: hidden;
+}
+.loading-bar img {
+  position: absolute;
+  top: 500px;
+  left: 0;
+  filter: drop-shadow(0 -500px 0 var(--loadingbar-background-color));
+}
+.loading-bar::after {
+  content: "";
+  position: absolute;
+  top: 500px;
+  left: 0;
+  filter: drop-shadow(0 -500px 0 var(--loadingbar-prospect-color));
+  width: 500px;
+  height: 62.5px;
+  background: url("Images/loading-bar.png") no-repeat left 100%;
+  background-size: 500px 62.5px;
+  background-position-x: 0;
+  -webkit-animation: loading-bar 60.5s cubic-bezier(0.28, 0.11, 0.32, 1) infinite forwards;
+          animation: loading-bar 60.5s cubic-bezier(0.28, 0.11, 0.32, 1) infinite forwards;
+}
+@media screen and (max-width: 719px) {
+  .loading-bar .loading-bar {
+    display: none;
+  }
+}
+@media screen and (max-width: 719px) and (orientation: landscape) {
+  .loading-bar .loading-bar {
+    display: block !important;
+    transform: translate(-50%, -50%) scale(0.7) !important;
+  }
+}
+
+@supports not (filter: drop-shadow(0 0 0 #fff)) {
+  .loading-bar:before {
+    content: "Your browser does not support the animation";
+  }
+}
+@-webkit-keyframes loading-bar {
+  0% {
+    width: 0;
+    background-size: 500px 62.5px;
+  }
+  100% {
+    width: 500px;
+  }
+}
+@keyframes loading-bar {
+  0% {
+    width: 0;
+    background-size: 500px 62.5px;
+  }
+  100% {
+    width: 500px;
+  }
+}
